@@ -1,0 +1,1011 @@
+
+SQL
+Data Engineer
+Pyspark
+
+
+
+SQL:
+
+1. Give output for all types of Joins:
+
+Table1
+col1
+1
+1
+0
+
+Table2
+col2
+0
+1
+1
+
+Select col1, col2 FROM
+table1 <join> table2 on col1 = col2
+
+INNER Join>
+
+LEFT JOIN>
+
+RIGHT JOIN>
+
+FULL OUTER JOIN>
+
+
+				
+2. We are given a Transaction(transaction_id, user_id, transaction_date, product_id, quantity)
+   We need to query the number of users who purchased products on multiple days(Note that a given user can purchase multiple products on a single day).
+   
+   Test Data:
+			transaction_id 	user_id		created_date	product_id		quantity
+				1			   U1		 2020-16-16			P1				2
+				2			   U2		 2020-16-16			P2				1
+				3			   U1		 2020-16-16			P3				1
+				4			   U4		 2020-16-16			P4				4
+				5			   U2		 2020-16-17			P5				3
+				6			   U2		 2020-16-17			P6				2
+				7			   U4		 2020-16-18			P7				1
+				8			   U3		 2020-16-19			P8				2
+				9			   U3		 2020-16-19			P9				8
+                10			   U5		 2020-16-12			P10				
+				
+				
+	Output: 2
+	U2 and U4 purchased it on multiple days
+	
+
+	Solution:
+				SELECT COUNT(user_id)
+					FROM
+					(
+					SELECT user_id
+					 FROM orders
+					 GROUP BY user_id
+					 HAVING COUNT(DISTINCT DATE(date)) > 1
+					) t1
+
+
+3.
+ Find the latest record for every name.
+Name    Salary  DOJ
+Laxman  1000    24-dec-2023
+Rajat   2000    20-dec-2023
+Laxman  3000    19-dec-2023
+Rajat   4000    28-dec-2023
+Anushka 5000    11-dec-2023
+
+Result:
+Laxman  1000    24-dec-2023
+Rajat   4000    28-dec-2023
+Anushka 5000    11-dec-2023
+
+4. Write a query to find the third highest salary of the employee.
+
+5. Write an SQL query to fetch the list of employees with the same salary.
+	Employee(Worker_id, Name, Salary, Profession)
+	
+	Solution: Select distinct W.WORKER_ID, W.FIRST_NAME, W.Salary 
+				from Worker W, Worker W1 
+				where W.Salary = W1.Salary 
+				and W.WORKER_ID != W1.WORKER_ID;
+				
+6. Have you used NVL() and NVL2() function and if yes then please tell the difference.
+
+7. Have you written pySpark job and if yes where those job were running and how were you triggering those jobs. what is infra for this
+
+8. I do have dataframe from which I want to fetch top two rows.
+
+	Solution:
+		df.head(2) if need to select second row, head(2)[1]
+	
+	
+9. I want to add a new column into dataframe such that it contain the double value of 'age' column
+	
+	Solution:
+	
+		df.withColumn('newAge', df['age]*2]).show()
+
+10. Print the df in sorted manner according to 'salary' field
+
+11. Please insert average value for pericular column if it is null for 'sales' column
+	
+	Solution:
+		find the mean
+		df.na.fill(mean_value, subset('sales))
+		
+12. Reverse the String
+	
+	'ABCDEF' to 'FEDCBA'
+
+Do not ask:
+
+2. BST:
+
+		+---+-------+
+		| N |P    	|
+		+---+-------+
+		|  1|  2	|
+		|  3|  2	|
+		|  6|  8	|
+		|  9|  8	|
+		|  2|  5	|
+		|  8|  5	|
+		|  5|  Null	|
+		+---+----+--+
+
+		Output:
+				1 Leaf
+				2 Inner
+				3 Leaf
+				5 Root 
+				6 Leaf
+				8 Inner 
+				9 Leaf
+
+1. Employee table, Employee id starting from 1 - n. Please find the first 50% employee details only.
+		
+
+
+	
+
+
+Q>> 
+
+ 
+
+Person and its friends list is given: 
+
+  
+
+{ 
+0: [1, 2], 
+1: [0, 5],  
+2: [0], 
+3: [], 
+4: [7] 
+5: [1], 
+6: [], 
+7: [4, 8], 
+8: [7] 
+} 
+
+ 
+
+Combine PPL who knows each other. 
+
+{0, 1, 2, 5} {3}, {6}, {4, 7, 8} 
+
+ 
+
+ 
+
+Q>> 
+
+ 
+
+find the indexes of the pairs whose sum is equal to a number K. 
+
+[2, 6, 8, 3, 7, 1] -> k= 10 
+
+Ans: 3, 4 
+
+ 
+
+Q>> 
+
+ 
+
+ 
+
+ 
+
+Q>> 
+
+ 
+
+How did you write the unit test case for exception scenario? 
+
+ 
+
+
+
+
+
+Personal Overview: 
+
+>  About yourself, your journey in IT career
+>  Your challenges in project or IT career
+>  Achievement 
+> Tell me about a time something went wrong in a project you were managing or you were the part of that project.
+> How do you prioritize tasks in a project?
+> What tools do you use to plan a project?
+> Do you prefer working on a single project or multiple projects at the same time?
+> Have you ever worked on a project that did not meet the deadline?
+> How will you handle the failure of a project?
+> Which was one of the biggest mistakes you have committed in your past projects? How has it impacted your approach to work? 
+> Hobbies
+> What do you do in your free time?
+
+@pytest.mark.parametrize()
+@pytest.fixture
+	
+Repository  
+CI/CD 
+Testing 
+Cloud HAD VERY BASIC 
+Databases 
+
+Branch1 
+	Commit1
+	Commit4
+	Commit5
+	Commit6
+	
+Branch2
+	Commit1
+	Commit2
+	Commit3
+
+
+> Epam is prod and service based company. 
+we do products as well as lots of service based work.
+we do have a lot of clinets across the world.
+We try to do lot of cloud based work, AI, ML, Deep learning and other moder tehnologies such as React, Java, Python etc.
+We have developed our own interview platform on which I am taking the interview. 
+  
+
+Django questions:
+
+>  Which architectural pattern does Django follow?
+>  Files in Django projects, What is the usage of Django-admin.py and manage.py?
+>  What are the Types of views in Django?
+>  what is Django ORM?
+>  how User Authentication work in django?
+>  How can you set up static files in Django?
+>
+What is the role of Cookie in Django?
+What are the signals in Django?
+What is mixin?
+
+
+Flask:
+
+What are the HTTP methods provided by Python Flask?
+How can we create request context in Flask?
+What are the attributes of request objects?
+What are the error codes in Flask?
+	In Flask, the error code is given below:
+	400 âˆ’ for Bad Request.
+	401 âˆ’ for Unauthenticated.
+	403 âˆ’ for Forbidden.
+	404 âˆ’ for Not Found.
+	406 âˆ’ for Not Acceptable.
+	415 âˆ’ for Unsupported Media Type.
+	429 âˆ’ Too Many Requests.
+16) How is memory managed in Flask Python?
+17) Explain how can you structure a large Flask application ?
+
+
+Python Core:
+
+> Difference between tuple and list
+> Create a tuple with numbers 5 to 40?
+> What is List comprehension
+> How we can handle exceptions in Python?
+> What is pass keyword, and when should we use it?
+> Can you explain range() function?
+> what is generator/ yield keyword?
+> create a generator which will return the numbers from 0 to 10
+> map and filter methods
+> What is decorator?
+> sample decorator function?
+> Difference between generators and iterators?
+> What will be time complexity for dictionary insert and retrieval?
+> Lambda function, which will take two numbers and give me sum of those numbers
+> What is GIL
+> What Are The Rules For Local And Global Variables In Python?
+> variable number of argument
+> How we define a class, Difference between instance and static method and class method.
+> Factory Method – Python Design Patterns
+> What are the basic concepts of OOPs?
+> What is method overloading and Overridding?
+> Did you write unit test for your project
+> Explain split() and join() functions in Python?
+
+list_1 = [1, 2, 3, 4, 5]
+list_2 = list(map(lambda x : x % 2 == 0, list_1))
+print(list_2)
+
+> []
+
+What is the memory comparison between both objects?
+
+obj_1 = range(10, 51)
+obj_2 = (10, 11, ....50)  # Consider it as a Tuple object
+
+Create a Decorator for below requirement:
+
+# Write your decorator 
+
+def method(a, b):
+    print(a + b)
+    
+method(1, 2)
+
+
+Expected Output >
+1
+2
+3
+
+
+Multiprocessing:
+
+> Multithreading and Multiprocessing 
+
+
+AWS Questions:
+
+> What arhitecture are you following in AWS?
+
+AWS Lambda:
+
+> How do you create aws lambda?
+> Have you used lambda layers? Why do we use those? How many layers can be applied to one lambda?
+> How can you use other dependencies in Lambda?
+> What is a server-less application?
+
+AWS S3:
+> If file comes to S3, we need to write its content to Dynamo Db, How will you do it
+> What are the different storage classes of S3?
+> Inventory in S3?
+> What are the different ways to read file of S3?
+
+AWS SQS:
+
+How Does AWS SQS Works?
+Amazon SQS vs Amazon SNS
+
+
+AWS DynamoDB:
+
+> Indexes in Dynamo db?
+> Which capacity mode did you use for dynamo table?
+> How were you managing Scan operations because it takes a lot of time.
+
+On-Demand Mode
+Provisioned Mode
+
+AWS Step functions:
+
+1. How can we retry logic in AWS step function?
+2. How can we share data in AWS Step Functions without passing it between the steps?
+
+AWS + EC2:
+
+What is auto-scaling?  How does it work?
+What is EBS? EBenefits? 
+What Is Amazon Ec2 Root Device Volume ?
+What Is Security Group In Amazon Ec2 ?
+What is AMI?
+
+Table: Professions
+Columns: Name, Profession
+Values:
+Sam Doctor
+Shyam, Actor
+Samuel Cricketer
+Sammy Singer
+-----------------
+output:
+Sam(D)
+Shyam(A)
+Samuel(C)
+Sammy(S)
+
+
+
+
+RDS:
+
+How AWS RDS ensure high availability and reliability?
+
+Database
+
+What is a Join? List its different types?
+What is a Self-Join?
+What is a Cross-Join?
+ What is an Index? Explain its different types.
+	> Unique and Non-Unique Index:
+	> clustered and Non-Clustered Index:
+	
+What is a Subquery? What are its types?
+	There are two types of subquery - Correlated and Non-Correlated.
+> Sarogate key: 
+	
+>> Write an SQL query to determine the nth (say n=5) highest salary from a table.
+
+SELECT Salary
+FROM Worker W1
+WHERE n = (
+ SELECT COUNT( DISTINCT ( W2.Salary ) )
+ FROM Worker W2
+ WHERE W2.Salary >= W1.Salary
+ );
+ 
+>> Write an SQL query to fetch the list of employees with the same salary.
+
+Select distinct W.WORKER_ID, W.FIRST_NAME, W.Salary 
+from Worker W, Worker W1 
+where W.Salary = W1.Salary 
+and W.WORKER_ID != W1.WORKER_ID;
+
+>> Write an SQL query to fetch the first 50% records from a table Employee. 
+   Id, 1 to N
+   Name
+   Address
+   
+
+SELECT *
+FROM WORKER
+WHERE WORKER_ID <= (SELECT count(WORKER_ID)/2 from Worker);
+
+>> 
+
+Without using distinct delete all duplicate records except one records
+
+
+Docker:
+
+try
+What is a DockerFile
+How do you create a Docker container from a Docker image?
+	> docker run -it -d <image_name>
+If you want to use a base image and make modifications to it, how do you do that?
+	> docker pull <image_name>
+Explain the Docker components.
+	The three architectural components include Docker Client, Host, and Registry.
+	Docker Client: This component executes build and run operations to communicate with the Docker Host.
+	Docker Host: This component holds the Docker Daemon, Docker images, and Docker containers. The daemon sets up a connection to the Docker Registry.
+	Docker Registry: This component stores Docker images. It can be a public registry, such as Docker Hub or Docker Cloud, or a private registry.
+How do you build a Dockerfile?
+		> docker build <path to dockerfile>
+What command do you use to push a new image to the Docker Registry?
+	docker push myorg/img
+Explain Registries in Docker	
+	Public Registry
+	Private Registry
+What is Hypervisor?
+	The hypervisor allows you to create a virtual environment in which the guest virtual machines operate. It controls the guest systems and checks if the resources are allocated to the guests as necessary.
+	
+	
+Write a generator for Fibonacci series?
+1, 1, 2, 3, 5, 8, 13, 21....
+	
+	>>>
+	
+class Name:	
+	def method_a(self):
+		print('A')
+
+	def method_a(self, a, b):
+		print('B')
+obj = Name()		
+obj.method_a()
+obj.method_a(1, 2)
+method_a = 10	
+
+
+
+Coding Normal Questions:
+
+   try:
+		print('Statement 1')
+   except:
+		Exception Raised
+   else:
+		print('Statement 2')
+   finally:
+		print('Statement 3')
+
+a> 
+   try:
+		Exception Raised
+   except:
+		Exception Raised
+   finally:
+		print('Statement 1')
+		
+b> 
+   try:
+		No Exception Raised
+   except:
+		print('Statement 1')
+   else:
+		Exception Raised
+   finally:
+		print('Statement 2')
+		
+c>
+	def function():
+		   try:
+				#No Exception Raised
+				return 1
+		   except:
+				pass
+		   finally:
+				print('Finally')
+				return 2
+	print(function())
+
+
+> What will be the output of this question:
+
+	class A:
+
+		def __init__(self)
+			self.a = 10
+
+	obj_a = A()
+	obj_b = A()
+	set_object = set([obj_a, obj_b])
+	len(set_object)
+	
+	2
+>> set_object = set([ [1, 2], (1, 2) ])
+	
+> What will be output:
+	class A:
+set_object = set([ [1, 2], (1, 2) ])
+		def __init__(self):
+			self.a = 10
+			
+	p = A()
+	d = {A(): 10, p: 20}
+	print(d.get(A(), 30))
+	
+	class A:
+
+		def __init__(self):
+			self.a = 10
+
+	set_object = set([A(), A()])
+	len(set_object)
+	
+> 	Is this possible?
+
+	class A:
+
+		def __init__(self):
+			self.a = 10
+
+	object_a = A()
+	object_b = A()
+	tuple_object = (object_a, object_b)
+	object_b.a = 20
+	
+
+>
+
+class B:
+	def __init__(self):
+		print('B')
+class C:
+	def __init__(self):
+		print('C')	
+class D:
+	def __init__(self):
+		print('D')
+class A(B, C, D):
+	def __init__(self):
+		print('A')
+		
+obj = A()
+	
+
+class B:
+	def __init__(self):
+		print('B')
+class C:
+	def __init__(self):
+		print('C')	
+class D:
+	def __init__(self):
+		print('D')
+class A(B, C, D):
+
+	def __init__(self):
+		super().__init__()
+		print('A')
+		
+A()
+	
+Coding quetions:
+
+{'a', 'b', 'c', 'd'}
+[7, 0, 4, 8, 9, 10, 78, 98]
+
+Output: {'a':[7, 0], 'b': [4,8], 'c': [9, 10], 'd': [78, 98]}
+
+{'a', 'b', 'c', 'd'}
+[7, 0, 4, 8, 9, 10, 78, 98, 1, 2, 3]
+
+Output: {'a':[7, 0, 4], 'b': [8, 9, 10], 'c': [78, 98, 1], 'd': [2, 3]}
+
+
+Question 2:
+
+list_1 = ['a', 'a', 'a', 'b', 'b', 'c', 'c', 'c', 'c', 'd', 'a', 'a']
+Output = ['a', 3, 'b', 2, 'c', 4, 'd', 1, 'a', 2]
+
+
+Create a dictionary
+
+Question 3:
+
+You are given a list of dishes, where each element consists of a list of strings beginning with the name 
+of the dish, followed by all the ingredients used in preparing it. You want to group the dishes by ingredients so that for 
+each ingredient you'll be able to find all the dishes that contain it (if there are at least 2 such dishes).
+
+Return an array where each element is a list beginning with the ingredient name, followed by the names of all 
+the dishes that contain this ingredient. The dishes inside each list should be sorted lexicographically, and 
+the result array should be sorted lexicographically by the names of the ingredients.
+--------------------------------------------------------------------------
+Input:
+-------
+[["Salad", "Tomato", "Cucumber", "Salad", "Sauce"],
+["Pizza", "Tomato", "Sausage", "Sauce", "Dough"],
+["Quesadilla", "Chicken", "Cheese", "Sauce"],
+["Sandwich", "Salad", "Bread", "Tomato", "Cheese"]]
+------------------------------------------------------------------------
+output
+-------
+[["Cheese", "Quesadilla", "Sandwich"],
+["Salad", "Salad", "Sandwich"],
+["Sauce", "Pizza", "Quesadilla", "Salad"],
+["Tomato", "Pizza", "Salad", "Sandwich"]]
+-----------------------------------------------------------------------
+
+Question 4:
+
+Find maximum consecutive characters count for every character?
+
+ string = 'zzzzddaaaabcccxxaa'
+
+	Output:  
+
+	a = 4
+	c = 3
+	z = 4
+	d = 2
+	b = 1
+	x = 2
+	
+Data Structure :
+
+Start -> 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> None
+Nth node from the end of a Linked List
+
+
+1 -> 2 -> 3 -> 4 -> 5
+pointer -> 3
+Convert it: 1 -> 2 -> 4 -> 5
+	
+Question 5:
+
+	[1, 2, 1, 2, 3, 2, 1, 2, 3, 4, 5, 6, 7, 8]
+	Find first index on any given number (Difference between continuos numbers will be +1/-1 only.)
+	
+Question 6:
+
+[1, 0, 1, 1, 1, 0, 0, 0, 1], Sort it
+	
+	factorial(1000)
+	
+Queston 7:
+	
+	factorial function, recursive
+	
+Question 8: 
+	Find the second maximum number in the list.
+	[1, 2, 3, 5, 7, 9, 9, 9, 8, 7]  -> 8
+	[1, 1, 1, 1, 1, 1]  -> -1
+	
+Question 9:def 
+L1 = ['abc', 'bb', '']
+L2 = ['abc'. ]
+
+
+Question 10:
+
+Your task is to remove the minimum number of parentheses ( '(' or ')', in any positions ) so that the resulting parentheses string is valid and return any valid string.
+
+Formally, a parentheses string is valid if and only if:
+
+It is the empty string, contains only lowercase characters, or
+It can be written as AB (A concatenated with B), where A and B are valid strings, or
+It can be written as (A), where A is a valid string.
+
+${record:attribute('metadata.table')}
+
+
+Question 10:
+
+String= ['2', '1', '+', '3', '*'] Output: (2+1)*3  -> 9.0
+String= ['4', '13', '5', '/', '+'] Output: (4+(13/5)) -> 6.17
+
+
+
+Example 1:
+
+Input: s = "lee(t(c)o)de)"
+Output: "lee(t(c)o)de"
+Explanation: "lee(t(co)de)" , "lee(t(c)ode)" would also be accepted.
+Example 2:
+
+Input: s = "a)b(c)d"
+Output: "ab(c)d"
+Example 3:
+
+Input: s = "))(("
+Output: ""
+Explanation: An empty string is also valid.
+
+Q. Check for balanced parentheses in an expression
+Input: exp = “[()]{}{[()()]()}” 
+Output: Balanced
+
+Input: exp = “[(])” 
+Output: Not Balanced 
+
+Input: exp = “[()]” 
+Output: Balanced 
+
+
+start -> '1' -> '2' -> '0' -> '4' -> None
+start -> '1' -> '2' -> '0' -> '4' -> '2' -> 0 -> 4 -> 
+
+
+Print matrix NxN (integer non zero N in an input) filled with number from 1 to N^2 in a clockwise spiral like in the example below:
+
+Sample Input:
+
+5
+Sample Output:
+
+1 2 3 4 5
+16 17 18 19 6
+15 24 25 20 7
+14 23 22 21 8
+13 12 11 10 9
+
+
+
+https://epam-my.sharepoint.com/:w:/p/laxman_raghuwanshi/ETHYFGMWQFxKvDvNZLIjlYcBlhJc3ZuG8c_s10giJmELbA?e=U5VVCC
+
+DagBags
+
+Q. Add two numbers represented by linked list 
+
+Input: 
+
+
+
+Liked_List_1: start -> 5->6->3 -> None // represents number 563 
+Linked_List_2: start -> 1->8->4->2 -> None // represents number 1842 
+Output: 
+Explanation: 563 + 1842 = 2405
+Resultant list: 2->4->0->5 // represents number 2405 
+
+
+50+ 600
+
+
+
+Input: 
+List1: 7->5->9->4->6 // represents number 75946
+List2: 8->4 // represents number 84
+Output: 
+Explanation: 75946+84=76030
+Resultant list: 7->6->0->3->0// represents number 76030
+
+
+Q. Finding middle element in a linked list
+
+
+Q. Check if Linked List is Palindrome
+
+
+Q. Reverse each word in given string
+"Hello this is EPAM" : "olleH siht si MAPE"
+
+Q "1234" + "5687" = 6921
+
+
+
+History load:
+id name salary
+1 a 10
+2 b 20
+3 c 30
+
+inc load:id name salary
+4 d 40
+3 c 45
+5 e 60
+
+
+mylist = [1,1,2,3,4,5,6,6,2,2]
+Display the element with most occurence
+
+
+How would you handle this?
+
+History load:
+id name salary
+1 a 10
+2 b 20
+3 c 30
+4 d 40
+
+inc load:
+
+id name salary
+3 c 45
+5 e 60
+
+Implement Queue using Stack
+
+
+
+The power of the string is the maximum length of a non-empty substring that contains only one unique character.
+
+Given a string s, return the power of s.
+
+ 
+
+Example 1:
+
+Input: s = "leetcode"
+Output: 2
+Explanation: The substring "ee" is of length 2 with the character 'e' only.
+Example 2:
+
+Input: s = "abbcccddddeeeeedcba"
+Output: 5
+Explanation: The substring "eeeee" is of length 5 with the character 'e' only.
+
+
+
+Stack
+
+	Push()
+	Pop()
+	is_empty()
+
+Queue
+
+	Enqueue()
+	Dequeue()
+
+
+Count the perfect brackets:
+
+Input1: exp = “afghv[sf(ddd)ad]f{g}dgg{g[sdff(fgd)dff(ffg)sf](fff)gggs}” 
+Output1: 8
+
+Input2: exp = “avfg[ae(dggg]ettf)” 
+Output2: -1
+
+Input3: exp = “adff[vvv(ryyh)afghh]” 
+Output3: 2 
+
+
+{}{{{}}}()()()
+
+{{{{(((
+}}}}))))
+
+
+
+Given an encoded string, return its decoded string.
+
+The encoding rule is: k[encoded_string], where the encoded_string inside the square brackets is being repeated exactly k times. Note that k is guaranteed to be a positive integer.
+
+You may assume that the input string is always valid; there are no extra white spaces, square brackets are well-formed, etc. Furthermore, you may assume that the original data does not contain any digits and that digits are only for those repeat numbers, k. For example, there will not be input like 3a or 2[4].
+
+
+Example 1:
+
+Input: s = "3[a]2[bc]"
+Output: "aaabcbc"
+Example 2:
+
+Input: s = "3[a2[c]]"
+Output: "accaccacc"
+
+
+Given an encoded string, return its decoded string.
+
+The encoding rule is: k[encoded_string], where the encoded_string inside the square brackets is being repeated exactly k times. 
+Note that k is guaranteed to be a positive integer.
+
+You may assume that the input string is always valid; 
+there are no extra white spaces, square brackets are well-formed, etc. 
+Furthermore, you may assume that the original data does not contain any digits and that digits are only for those repeat numbers, 
+k. For example, there will not be input like 3a or 2[4].
+
+
+>>
+Atlassian
+
+1.
+find the indexes of the numbers which are having maximum difference in the list
+[1, 4, 8, 10, 9] -> 9
+ 
+2. 
+find the indexes of the pairs whose sum is equal to a number K.
+[2, 6, 8, 3, 7, 1] -> k= 10
+Ans: 3, 4
+ 
+3.
+id | num
+1  | 1
+2  | 1
+3  | 1
+4  | 2
+5  | 2
+6  | 3
+7  | 3
+8  | 4
+ 
+If same 3 consecutive same num are there then return it 
+num
+1
+ 
+5.
+Third/Second  Highest Salary with window function | with out it
+ 
+6.
+Department wise second highest salaries employee details 
+ 
+7.
+Person and its friends list is given:
+ 
+{
+0: [1, 2],
+1: [0, 5], 
+2: [0],
+3: [],
+4: [7]
+5: [1],
+6: [],
+7: [4, 8],
+8: [7]
+}
+ 
+Combine PPL who knows each other.
+{0, 1, 2, 5} {3}, {6}, {4, 7, 8}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
